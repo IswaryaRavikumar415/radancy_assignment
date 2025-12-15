@@ -1,0 +1,651 @@
+// ============================================
+// VARIABLES
+// ============================================
+$primary-green: #00945F;
+$dark-green: #1a7d4a;
+$teal: #2B715B;
+$anchor-green: #759B24;
+$orange: #E97300;
+$text-dark: #333333;
+$text-light: #606360;
+$bg-light: #f5f5f5;
+$bg-very-light: #e8f5f0;
+$border-light: #ddd;
+$white: #ffffff;
+$bg-green: #EBF7F5;
+
+$font-base: Arial, sans-serif;
+$font-size-base: 16px;
+$font-size-xs: 14px;
+$font-size-sm: 16px;
+$font-size-md: 20px;
+$font-size-lg: 24px;
+$font-size-xl: 30px;
+
+$spacing-xs: 8px;
+$spacing-sm: 10px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-xxl: 48px;
+
+$max-width: 1200px;
+$transition: all 0.3s ease;
+
+// ============================================
+// BREAKPOINTS
+// ============================================
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (max-width: 575px) { @content; }
+  }
+  @else if $breakpoint == 'md' {
+    @media (max-width: 767px) { @content; }
+  }
+  @else if $breakpoint == 'lg' {
+    @media (max-width: 991px) { @content; }
+  }
+  @else if $breakpoint == 'xl' {
+    @media (max-width: 1199px) { @content; }
+  }
+}
+
+// ============================================
+// RESET & BASE STYLES
+// ============================================
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-base;
+  font-size: $font-size-base;
+  line-height: 1.6;
+  color: $text-dark;
+  background-color: $white;
+}
+
+a {
+  color: $primary-green;
+  text-decoration: none;
+  transition: $transition;
+
+  &:hover {
+    color: $dark-green;
+  }
+}
+
+// ============================================
+// UTILITY CLASSES
+// ============================================
+.container {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0;
+
+  @include respond-to('md') {
+    padding: 0 $spacing-md;
+  }
+
+  @include respond-to('sm') {
+    padding: 0 $spacing-md;
+  }
+}
+.text-start{text-align:left;}
+
+// ============================================
+// HEADER
+// ============================================
+.header {
+  background-color: $white;
+  padding: $spacing-lg;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  .logo {
+    display: flex;
+    align-items: center;
+
+    @include respond-to('md') {
+      justify-content:center;
+    }
+  }
+
+  .bank-logo {
+    width: 200px;
+    height: auto;
+  }
+
+  @include respond-to('md') {
+    padding: $spacing-md 0;
+  }
+}
+
+// ============================================
+// HERO SECTION
+// ============================================
+.hero {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  display: flex;
+
+  @include respond-to('lg') {
+    height: 350px;
+  }
+
+  @include respond-to('md') {
+    height: 300px;
+  }
+
+  @include respond-to('sm') {
+    height: 250px;
+  }
+
+  .hero-content {
+    display: flex;
+    width: 100%;
+    position: relative;
+    background-color:$teal;
+  }
+
+  .hero-image {
+    flex: 0 0 60%;
+    overflow: hidden;
+    clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
+
+    @include respond-to('md') {
+      flex: 0 0 100%;
+      clip-path:none;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  .hero-overlay {
+    flex: 0 0 50%;    
+    background-color: $teal;
+
+    @include respond-to('md') {
+      display: none;
+    }
+  }
+}
+
+// ============================================
+// INVESTMENT SECTION
+// ============================================
+.investment-section {
+  padding: $spacing-xxl $spacing-lg;  
+  background-color: $white;
+  text-align:center;
+
+  @include respond-to('md') {
+    padding: $spacing-xl $spacing-md;
+  }
+
+  @include respond-to('sm') {
+    padding: $spacing-lg $spacing-md;
+  }
+
+  .section-title {
+    font-size: $font-size-xl;
+    color: $primary-green;
+    margin-bottom: $spacing-md;
+    font-weight: 500;
+    position: relative;    
+
+    &::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 2px;
+      background-color: $teal;
+      margin: $spacing-sm auto 0;
+    }
+
+    @include respond-to('md') {
+      font-size: $font-size-lg;
+    }
+  }
+
+  .section-description {
+    color: $text-light;
+    font-size: $font-size-sm;
+    line-height: 1.8;
+
+    @include respond-to('md') {
+      margin: $spacing-lg auto $spacing-lg;
+      font-size: $font-size-base;
+    }
+  }
+}
+
+// ============================================
+// BUTTONS
+// ============================================
+.btn {
+  display: inline-block;
+  padding: $spacing-sm $spacing-lg;
+  border: none;
+  font-size: $font-size-base;
+  font-weight: 500;
+  cursor: pointer;
+  transition: $transition;
+  text-transform: none;
+  margin-top:40px;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.btn-primary {
+  background-color: $orange;
+  color: $white;
+
+  &:hover {
+    background-color: darken($orange, 10%);
+  }
+}
+
+// ============================================
+// ADVANTAGES SECTION
+// ============================================
+.advantages-section {
+  padding: $spacing-xxl $spacing-lg;
+  background-color: $white;
+
+  @include respond-to('md') {
+    padding: $spacing-xl $spacing-md;
+  }
+
+  @include respond-to('sm') {
+    padding: $spacing-lg $spacing-md;
+  }
+
+  .section-title {
+    font-size: $font-size-xl;
+    color: $primary-green;
+    margin-bottom: $spacing-xxl;
+    font-weight: 500;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 2px;
+      background-color: $primary-green;
+      margin: $spacing-sm auto 0;
+    }
+
+    @include respond-to('md') {
+      font-size: $font-size-lg;
+      margin-bottom: $spacing-xl;
+    }
+  }
+
+  .advantages-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-xl;   
+
+    @include respond-to('lg') {
+      gap: $spacing-lg;
+    }
+
+    @include respond-to('md') {
+      grid-template-columns: 1fr;
+      gap: $spacing-lg;
+    }
+  }
+
+  .bordered{
+    border-right: solid 2px #E5E4DD;
+    padding-right:20px;
+
+    @include respond-to('md') {
+      border-right:none;
+      padding-right:0;
+    }
+  }
+
+  .card-row-one{
+    margin-bottom:30px;
+
+    @include respond-to('md') {
+      margin-bottom:0;
+    }
+  }
+
+  .advantage-card {    
+    background-color: $white;
+
+    h3 {
+      font-size: $font-size-md;
+      color: $primary-green;
+      margin-bottom: $spacing-md;
+      font-weight: 500;
+    }
+
+    p {
+      color: $text-light;
+      font-size: $font-size-base;
+      line-height: 1.8;
+      margin-bottom: $spacing-md;
+    }
+
+    .learn-more {
+      color: $anchor-green;
+      font-size: $font-size-base;
+      font-weight: 500;
+      display: inline-block;
+
+      &:hover {
+        color: $dark-green;
+      }
+    }
+    @include respond-to('md') {
+      border-bottom:solid 2px #E5E4DD;
+      padding-bottom:$spacing-md;
+    }
+  }
+}
+
+// ============================================
+// FOOTER INFO SECTION
+// ============================================
+.footer-info-section {
+  background-color: $bg-green;
+  margin-top: $spacing-xxl;
+
+  @include respond-to('md') {
+    margin-top: $spacing-xl;
+  }
+
+  .footer-info-header {
+    background-color: darken($primary-green, 8%);
+    padding: $spacing-lg;
+    color: $white;
+    text-align: center;
+
+    h3 {
+      font-size: $font-size-md;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    @include respond-to('md') {
+      padding: $spacing-md;
+    }
+  }
+
+  .footer-info-text {
+    padding: $spacing-lg;
+    color: $text-light;
+    font-size: $font-size-sm;
+    line-height: 1.8;    
+
+    @include respond-to('md') {
+      padding: $spacing-md;
+      font-size: $font-size-xs;
+    }
+  }
+}
+
+// ============================================
+// TESTIMONIALS SECTION
+// ============================================
+.testimonials-section {
+  padding: $spacing-xxl $spacing-lg; 
+
+  @include respond-to('md') {
+    padding: $spacing-xl $spacing-md;
+  }
+
+  @include respond-to('sm') {
+    padding: $spacing-lg $spacing-md;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-xl;
+    margin-top: $spacing-xxl;
+
+    @include respond-to('lg') {
+      gap: $spacing-lg;
+    }
+
+    @include respond-to('md') {
+      grid-template-columns: 1fr;
+      gap: $spacing-lg;
+    }
+  }
+
+  .testimonial-card.card-first{
+    padding-right:25%;
+
+     @include respond-to('md') {
+      padding:$spacing-md;
+     }
+  }
+  .testimonial-card.card-last{
+    padding-left:25%;
+
+      @include respond-to('md') {
+      padding:$spacing-md;
+     }
+  }
+
+  .testimonial-card {
+    background-color: $white;
+    padding: $spacing-lg;
+    text-align: center;
+    border-radius: 4px;    
+    transition: $transition;
+
+      .testimonial-image {
+      margin-bottom: $spacing-lg;
+
+      img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;        
+      }
+    }
+
+    .testimonial-quote {
+      font-style: italic;
+      color: $text-light;
+      margin-bottom: $spacing-md;
+      line-height: 1.8;
+      font-size: $font-size-sm;
+      position:relative;
+      z-index: 1;
+
+      &::before {
+        content: "";
+        background-image: url("/images/quotes-img.png");
+        font-size: $font-size-xl;
+        color: $primary-green;
+        opacity: 0.8;
+        margin-right: 4px;
+        position:absolute;
+        top:0;
+        left:0;
+        width:75px;
+        height:60px;
+        z-index: -1;
+      }     
+    }
+
+    .testimonial-author {
+      color: $primary-green;
+      font-weight: 500;
+      font-size: $font-size-sm;
+    }
+  }
+}
+
+// ============================================
+// FOOTER
+// ============================================
+.footer {
+  background-color: $white;
+  padding: $spacing-xl $spacing-lg;
+  border-top: 2px solid $primary-green;
+
+  @include respond-to('md') {
+    padding: $spacing-lg $spacing-md;
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: flex-start;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-xl;
+
+    @include respond-to('md') {
+      gap: $spacing-md;
+      margin-bottom: $spacing-lg;
+    }
+
+    .fa {
+      padding: 10px;
+      font-size: 16px;
+      width: 40px;
+      text-align: center;
+      text-decoration: none;
+      margin: 5px 2px;
+    }
+
+    .fa-facebook {
+      background: #3B5998;
+      color: white;
+    }
+
+    .fa-twitter {
+      background: #55ACEE;
+      color: white;
+    }
+
+    .fa-linkedin {
+      background: #007bb5;
+      color: white;
+    }
+
+    .fa-youtube {
+      background: #bb0000;
+      color: white;
+    }
+  }
+
+  .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: $bg-light;
+    transition: $transition;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    &:hover {
+      background-color: $primary-green;
+
+      svg {
+        fill: $white;
+      }
+    }
+  }
+
+  .legal-text {
+    margin-bottom: $spacing-lg;
+    font-size: $font-size-xs;
+    color: $text-light;
+    line-height: 1.5;
+
+    @include respond-to('md') {
+      font-size: 12px;
+    }
+
+    p {
+      margin-bottom: $spacing-md;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      a {
+        color: $primary-green;
+        text-decoration: underline;
+
+        &:hover {
+          color: $dark-green;
+        }
+      }
+    }
+  }
+
+  .footer-links {
+    padding-top: $spacing-md;    
+    font-size: $font-size-sm;
+    font-weight:600;
+
+    a {
+      color: $text-dark;
+      transition: $transition;
+
+      &:hover {
+        color: $primary-green;
+      }
+    }
+  }
+}
+
+// ============================================
+// RESPONSIVE TYPOGRAPHY
+// ============================================
+@include respond-to('sm') {
+  body {
+    font-size: 15px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.3;
+  }
+}
